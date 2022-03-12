@@ -14,4 +14,9 @@ class Chapter extends Model
         return $this->hasMany(Scene::class);
     }
 
+    public function novel()
+    {
+        return $this->belongsTo(Novel::class);
+    }
+
 }
