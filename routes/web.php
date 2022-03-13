@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [\App\Http\Controllers\UserController::class, 'showDashboard'])->name('home.show');
+
+    Route::group(['prefix' => '/novels'], function () {
+        Route::get('/', [\App\Http\Controllers\NovelsController::class, 'index']);
+    });
 });
 
 require __DIR__ . '/auth.php';

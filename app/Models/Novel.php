@@ -20,6 +20,14 @@ class Novel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'author',
+        'description',
+        'user_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

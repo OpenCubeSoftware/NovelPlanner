@@ -1,23 +1,33 @@
 <template>
-    <main-layout>
-        <h3>Welcome, {{ $page.props.user.name }}!</h3>
-        <div v-if="$page.props.novels && $page.props.novels.length > 0"></div>
-        <h1 v-else>No novels</h1>
-        <button class="btn btn-danger" @click="logPageProps">Meow</button>
-    </main-layout>
+    <novel-layout>
+        <h3>Welcome, {{ $page.props.auth.user.name }}!</h3>
+        <div v-if="$page.props.novels && $page.props.novels.length > 0">
+            <div v-for="novel in $page.props.novels" class="row justify-content-center">
+                <div class="col-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ novel.title ?? 'No title' }}</h5>
+                            <h6>{{ novel.author ?? capitalize($page.props.auth.user.name) }}</h6>
+                            <p class="card-text">{{ novel.description ?? 'No description' }}</p>
+                            <a :href="`/novels/${novel.id}`" class="btn btn-primary">View Novel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 v-else>No novels! Why not <a href="/novels/new">create one?</a></h4>
+    </novel-layout>
 </template>
 
 <script>
-import MainLayout from "@/Layouts/MainLayout";
+// import MainLayout from "@/Layouts/MainLayout";
+import {capitalize} from "lodash";
+import NovelLayout from "@/Layouts/NovelLayout";
 
 export default {
     name: "Novels.vue",
-    components: {MainLayout},
-    methods: {
-        logPageProps() {
-            console.log(this.$page);
-        }
-    }
+    components: {NovelLayout},
+    methods: {}
 }
 </script>
 
