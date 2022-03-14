@@ -1,7 +1,7 @@
 <template>
     <main>
         <sidebar/>
-        <div class="container mx-auto">
+        <div class="container mx-auto pt-6">
             <slot/>
         </div>
     </main>

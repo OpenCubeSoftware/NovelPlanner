@@ -1,5 +1,5 @@
 <template>
-    <novel-layout>
+    <main-layout>
         <h3>Welcome, {{ $page.props.auth.user.name }}!</h3>
         <div v-if="$page.props.novels && $page.props.novels.length > 0">
             <div v-for="novel in $page.props.novels" class="row justify-content-center">
@@ -16,17 +16,17 @@
             </div>
         </div>
         <h4 v-else>No novels! Why not <a href="/novels/new">create one?</a></h4>
-    </novel-layout>
+    </main-layout>
 </template>
 
 <script>
-// import MainLayout from "@/Layouts/MainLayout";
+import MainLayout from "@/Layouts/MainLayout";
 import {capitalize} from "lodash";
-import NovelLayout from "@/Layouts/NovelLayout";
+
 
 export default {
     name: "Novels.vue",
-    components: {NovelLayout},
+    components: {MainLayout},
     methods: {}
 }
 </script>

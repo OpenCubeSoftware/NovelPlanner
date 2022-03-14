@@ -2,11 +2,13 @@
 import {usePage} from '@inertiajs/inertia-vue3';
 import {computed} from "vue";
 import {Inertia} from "@inertiajs/inertia";
+import {Link} from '@inertiajs/inertia-vue3';
 
 export default {
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
-        return {user};
+        const url = computed(() => usePage().url);
+        return {user, url};
     },
     methods: {
         handleLogout() {
@@ -29,7 +31,7 @@ export default {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <Link class="nav-link" aria-current="page" href="/">Home</Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">New Novel</a>
