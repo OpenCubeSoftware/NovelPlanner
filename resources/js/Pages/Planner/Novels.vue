@@ -9,7 +9,7 @@
                             <h5 class="card-title">{{ novel.title ?? 'No title' }}</h5>
                             <h6>{{ novel.author ?? capitalize($page.props.auth.user.name) }}</h6>
                             <p class="card-text">{{ novel.description ?? 'No description' }}</p>
-                            <a :href="`/novels/${novel.id}`" class="btn btn-primary">View Novel</a>
+                            <a :href="route('novels.show', {novel: novel.id})" class="btn btn-primary">View Novel</a>
                         </div>
                     </div>
                 </div>

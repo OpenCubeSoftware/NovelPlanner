@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Novel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -42,11 +43,15 @@ class NovelsController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function show($id)
+    public function show(Novel $novel)
     {
-        //
+        $this->authorize('view', [$novel]);
+        return Inertia::render('Planner/Novel', [
+            'novel' => $novel,
+        ]);
+
     }
 
     /**

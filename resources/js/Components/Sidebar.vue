@@ -6,10 +6,10 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
+                <span @click="" class="nav-link" aria-current="page">
                     <i class="bi bi-house-door" style="font-size: 2rem; color: #ff0000;"/>
                     Home
-                </a>
+                </span>
             </li>
             <li>
                 <a href="#" class="nav-link link-dark">
@@ -70,7 +70,13 @@ import {computed} from "vue";
 export default {
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
-        return {user}
+        const novel = computed(() => usePage().props.value?.novel);
+        return {user, novel}
+    },
+    methods: {
+        logNovel() {
+            console.log(this.novel);
+        }
     },
     name: "Sidebar"
 }

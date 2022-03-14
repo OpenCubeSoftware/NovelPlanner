@@ -23,3 +23,6 @@ mix.js('resources/js/app.js', 'public/js')
 if (mix.inProduction()) {
     mix.version();
 }
+
+const path = require('path');
+mix.alias({ziggy: path.resolve('vendor/tightenco/ziggy/dist/vue')});

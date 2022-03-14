@@ -3,10 +3,12 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: ./docker/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
+                XDEBUG: '${XDEBUG}'
+                XDEBUG_PORT: '${XDEBUG_PORT}'
         image: sail-8.1/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
@@ -15,8 +17,9 @@ services:
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_MODE: 'debug'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            PHP_IDE_CONFIG: serverName=Docker
         volumes:
             - '.:/var/www/html'
         networks:
@@ -39,7 +42,7 @@ services:
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
 networks:

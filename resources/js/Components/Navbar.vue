@@ -1,18 +1,21 @@
 <script>
-import {usePage} from '@inertiajs/inertia-vue3';
+import {usePage, Link} from '@inertiajs/inertia-vue3';
 import {computed} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import {Link} from '@inertiajs/inertia-vue3';
 
 export default {
+    components: {Link},
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
-        const url = computed(() => usePage().url);
+        const url = computed(() => usePage().props.value.url);
         return {user, url};
     },
     methods: {
         handleLogout() {
             Inertia.post('/logout')
+        },
+        logUrl() {
+            console.log(url);
         }
     }
 
@@ -22,7 +25,7 @@ export default {
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Novel Planner</a>
+            <span class="navbar-brand">Novel Planner</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +34,9 @@ export default {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <Link class="nav-link" aria-current="page" href="/">Home</Link>
+                        <Link class="nav-link" :class="{'active': $page.component === 'Planner/Novels'}"
+                              aria-current="page" href="/">Home
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">New Novel</a>
@@ -44,6 +49,7 @@ export default {
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><span class="dropdown-item" @click="logUrl">Meow</span></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
