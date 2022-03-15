@@ -33,6 +33,16 @@ class Character extends Model
 {
     use HasFactory;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function novels()
+    {
+        return $this->belongsToMany(Novel::class);
+    }
+
     public function scenes()
     {
         return $this->belongsToMany(Scene::class);

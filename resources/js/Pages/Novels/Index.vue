@@ -25,7 +25,7 @@ import {capitalize} from "lodash";
 
 
 export default {
-    name: "Novels.vue",
+    name: "NovelIndex",
     components: {MainLayout},
     methods: {}
 }

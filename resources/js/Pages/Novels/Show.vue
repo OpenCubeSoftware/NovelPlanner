@@ -8,7 +8,7 @@
 import NovelLayout from "@/Layouts/NovelLayout";
 
 export default {
-    name: "Novel",
+    name: "NovelShow",
     components: {NovelLayout},
     props: ['novel'],
 }

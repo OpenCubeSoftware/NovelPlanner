@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Novel;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
-class NovelsController extends Controller
+class CharacterController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return redirect()->to('/');
+        $user = Auth::user();
+        $characters = $user->characters;
     }
 
     /**
@@ -43,15 +43,11 @@ class NovelsController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Inertia\Response
+     * @return \Illuminate\Http\Response
      */
-    public function show(Novel $novel)
+    public function show($id)
     {
-        $this->authorize('view', [$novel]);
-        return Inertia::render('Novels/Show', [
-            'novel' => $novel,
-        ]);
-
+        //
     }
 
     /**

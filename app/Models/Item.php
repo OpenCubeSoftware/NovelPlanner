@@ -19,6 +19,11 @@ class Item extends Model
 {
     use HasFactory;
 
+    public function novels()
+    {
+        return $this->belongsToMany(Novel::class);
+    }
+
     public function scenes()
     {
         return $this->belongsToMany(Scene::class);

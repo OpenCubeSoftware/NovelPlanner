@@ -12,7 +12,7 @@ class PagesController extends Controller
     {
         if (Auth::hasUser()) {
             $user = Auth::user();
-            return Inertia::render('Planner/Novels', ['novels' => $user->novels]);
+            return Inertia::render('Novels/Index', ['novels' => $user->novels]);
         }
         return Inertia::render('Welcome');
     }

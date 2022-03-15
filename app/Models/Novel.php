@@ -37,4 +37,19 @@ class Novel extends Model
     {
         return $this->hasMany(Chapter::class);
     }
+
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
+    }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class);
+    }
 }

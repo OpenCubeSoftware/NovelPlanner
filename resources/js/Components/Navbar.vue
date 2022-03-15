@@ -34,8 +34,8 @@ export default {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <Link class="nav-link" :class="{'active': $page.component === 'Planner/Novels'}"
-                              aria-current="page" href="/">Home
+                        <Link class="nav-link" aria-current="page" href="/">
+                            Home
                         </Link>
                     </li>
                     <li class="nav-item">

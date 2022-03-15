@@ -1,46 +1,42 @@
 <template>
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <span class="fs-4">Sidebar</span>
+            <span class="fs-4">Novel Planner</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <span @click="" class="nav-link" aria-current="page">
-                    <i class="bi bi-house-door" style="font-size: 2rem; color: #ff0000;"/>
+                <Link
+                    class="nav-link"
+                    :class="{'active': $page.component.startsWith('Novels/Novel')}"
+                    :href="route('novels.show', {novel: $page.props?.novel})"
+                >
+                    <i class="bi bi-house-door" style="font-size: 1rem;"
+                       :style="{color: $page.component.startsWith('Novels/Novel') ? '#ffffff' : '#000000'}"/>
                     Home
-                </span>
+                </Link>
+            </li>
+            <li>
+                <Link href="#" class="nav-link link-dark">
+                    <i class="bi bi-people" style="font-size: 2rem; color: #ffffff;"/>
+                    Characters
+                </Link>
             </li>
             <li>
                 <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2"/>
-                    </svg>
-                    Dashboard
+                    <i class="bi bi-map" style="font-size: 2rem; color: #ffffff;"/>
+                    Locations
                 </a>
             </li>
             <li>
                 <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table"/>
-                    </svg>
-                    Orders
+                    <i class="bi bi-card-list" style="font-size: 2rem; color: #ffffff;"/>
+                    Items
                 </a>
             </li>
             <li>
                 <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#grid"/>
-                    </svg>
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"/>
-                    </svg>
-                    Customers
+
                 </a>
             </li>
         </ul>
@@ -48,7 +44,7 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                <strong>{{ user.name }}}</strong>
+                <strong>{{ user.name }}</strong>
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                 <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -66,6 +62,7 @@
 <script>
 import {usePage} from '@inertiajs/inertia-vue3';
 import {computed} from "vue";
+import {Link} from "@inertiajs/inertia-vue3";
 
 export default {
     setup() {
@@ -73,6 +70,7 @@ export default {
         const novel = computed(() => usePage().props.value?.novel);
         return {user, novel}
     },
+    components: {Link},
     methods: {
         logNovel() {
             console.log(this.novel);
