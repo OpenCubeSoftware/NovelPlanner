@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Novel;
+use App\Models\Location;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
-class NovelPolicy
+class LocationPolicy
 {
     use HandlesAuthorization;
 
@@ -26,12 +25,12 @@ class NovelPolicy
      * Determine whether the user can view the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Novel $novel
+     * @param \App\Models\Location $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Novel $novel)
+    public function view(User $user, Location $location)
     {
-        return $novel->user_id === $user->id || $user->is_admin;
+        return $location->user_id === $user->id || $user->is_admin;
     }
 
     /**
@@ -49,47 +48,47 @@ class NovelPolicy
      * Determine whether the user can update the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Novel $novel
+     * @param \App\Models\Location $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Novel $novel)
+    public function update(User $user, Location $location)
     {
-        return $novel->id === $user->id || $user->is_admin;
+        return $location->user_id === $user->id || $user->is_admin;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Novel $novel
+     * @param \App\Models\Location $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Novel $novel)
+    public function delete(User $user, Location $location)
     {
-        return $novel->user_id === $user->id || $user->is_admin;
+        return $location->user_id === $user->id || $user->is_admin;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Novel $novel
+     * @param \App\Models\Location $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Novel $novel)
+    public function restore(User $user, Location $location)
     {
-        return $novel->user_id === $user->id || $user->is_admin;
+        return $location->user_id === $user->id || $user->is_admin;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Novel $novel
+     * @param \App\Models\Location $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Novel $novel)
+    public function forceDelete(User $user, Location $location)
     {
-        return $novel->user_id === $user->id || $user->is_admin;
+        return $location->user_id === $user->id || $user->is_admin;
     }
 }
