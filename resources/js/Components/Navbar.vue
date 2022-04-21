@@ -4,6 +4,7 @@ import {computed} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
 export default {
+    name: "Navbar",
     components: {Link},
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
@@ -23,46 +24,48 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand">Novel Planner</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <Link class="nav-link" aria-current="page" href="/">
-                            Home
-                        </Link>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">New Novel</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false"> {{ user.name }} </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><span class="dropdown-item" @click="logUrl">Meow</span></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" @click="handleLogout">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <q-toolbar class="bg-primary text-white shadow-2">
+        <q-toolbar-title shrink>Novel Planner</q-toolbar-title>
+        <q-separator dark vertical inset/>
+        <q-btn stretch flat label="Meow"/>
+        <q-btn stretch flat label="Purr"/>
+
+        <q-space/>
+        <q-btn stretch flat label="Link"/>
+        <q-btn stretch flat label="Link"/>
+        <q-btn-dropdown stretch flat :label="user.name">
+            <q-list>
+                <q-item-label header>Folders</q-item-label>
+                <q-item v-for="n in 3" :key="`x.${n}`" clickable v-close-popup tabindex="0">
+                    <q-item-section avatar>
+                        <q-avatar icon="folder" color="secondary" text-color="white"/>
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Photos</q-item-label>
+                        <q-item-label caption>February 22, 2016</q-item-label>
+                    </q-item-section>
+                    <q-item-section side>
+                        <q-icon name="info"/>
+                    </q-item-section>
+                </q-item>
+                <q-separator inset spaced/>
+                <q-item-label header>Files</q-item-label>
+                <q-item v-for="n in 3" :key="`y.${n}`" clickable v-close-popup tabindex="0">
+                    <q-item-section avatar>
+                        <q-avatar icon="assignment" color="primary" text-color="white"/>
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Vacation</q-item-label>
+                        <q-item-label caption>February 22, 2016</q-item-label>
+                    </q-item-section>
+                    <q-item-section side>
+                        <q-icon name="info"/>
+                    </q-item-section>
+                </q-item>
+            </q-list>
+        </q-btn-dropdown>
+
+    </q-toolbar>
 </template>
 
 
-<style scoped>
-
-</style>
