@@ -12,11 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description;
  * @property string $outcome;
  * @property string $status;
+ * $status is enum, values: ['first_draft', 'second_draft','final_review','done]
  * @property int $user_id;
  * @property int $novel_id;
  * @property int $order_in_novel
  * @property \Illuminate\Support\Carbon|null $created_at;
  * @property \Illuminate\Support\Carbon|null $updated_at;
+ *
  */
 class Chapter extends Model
 {
