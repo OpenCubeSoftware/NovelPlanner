@@ -27,7 +27,11 @@ import {capitalize} from "lodash";
 export default {
     name: "NovelIndex",
     components: {MainLayout},
-    methods: {}
+    methods: {
+        meow() {
+            alert("Meow!!!!");
+        }
+    }
 }
 </script>
 
