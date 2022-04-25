@@ -1,17 +1,27 @@
+<script setup>
+import {capitalize} from "lodash";
+import {defineProps} from 'vue';
+
+const props = defineProps({
+    novel: Object
+})
+
+</script>
+
 <template>
     <q-card>
         <q-card-section>
             <div class="text-h6">
-                {{ title ?? 'No title' }}
+                {{ novel.title ?? 'No title' }}
             </div>
             <div class="text-subtitle2">
                 {{
-                    author ?? capitalize($page.props.auth.user.name)
+                    novel.author
                 }}
             </div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-            {{ description ?? 'No description given' }}
+            {{ novel.description ?? 'No description given' }}
         </q-card-section>
         <q-separator/>
         <q-card-actions vertical>
@@ -19,16 +29,7 @@
         </q-card-actions>
     </q-card>
 </template>
-
-<script>
-import {capitalize} from "lodash";
-
-export default {
-    name: "NovelCard",
-    props: ['title', 'author', 'description'],
-}
-</script>
-
 <style scoped>
 
 </style>
+

@@ -19,6 +19,7 @@ import {Link} from '@inertiajs/inertia-vue3';
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: #e9e9e9;
 }
 </style>
 <!--<template>-->
