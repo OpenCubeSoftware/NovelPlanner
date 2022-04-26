@@ -1,10 +1,7 @@
 <script setup>
-import BreezeButton from '@/ComponentsAuth/Button.vue';
 import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/ComponentsAuth/Input.vue';
-import BreezeLabel from '@/ComponentsAuth/Label.vue';
 import BreezeValidationErrors from '@/ComponentsAuth/ValidationErrors.vue';
-import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
+import {Head, useForm} from '@inertiajs/inertia-vue3';
 import {defineProps, ref} from "vue";
 import {isEmpty} from "lodash";
 import Banner from '@/Components/Info/Banner.vue';
@@ -22,7 +19,7 @@ const form = useForm({
 });
 
 const isPwd = ref(true);
-const isCPwd = ref(true);
+let isCPwd = ref(true);
 
 const submit = () => {
     form.post(route('register'), {
@@ -65,7 +62,7 @@ const submit = () => {
                             />
                         </template>
                     </q-input>
-                    <div>Already have an account? <a href="/login">Log in</a></div>
+                    <div>Already have an account? <a href="/login">Login</a></div>
                     <q-btn color="primary" label="Log in" @click="submit"/>
                 </form>
             </q-card-section>
@@ -83,7 +80,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .heada {

@@ -1,29 +1,29 @@
 <template>
-    <main>
+    <q-layout view="hHh LpR fff">
+
+        <q-header elevated class="bg-primary text-white">
+            <q-toolbar class="bg-primary text-white shadow-2">
+                <q-toolbar-title>Novel Planner</q-toolbar-title>
+            </q-toolbar>
+        </q-header>
         <sidebar/>
-        <div class="container mx-auto pt-6">
+
+
+        <q-page-container>
             <slot/>
-        </div>
-    </main>
+        </q-page-container>
+
+
+    </q-layout>
 </template>
 
-<script>
-import Sidebar from "@/Components/Layout/Sidebar";
+<script setup>
+import {ref} from 'vue';
+import Sidebar from '@/Components/Layout/Sidebar.vue';
 
-export default {
-    components: {Sidebar},
-    name: "NovelLayout"
+const leftDrawerOpen = ref(true);
+
+function toggleLeftDrawer() {
+    leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
-
-<style scoped>
-main {
-    display: flex;
-    flex-wrap: nowrap;
-    height: 100vh;
-    height: -webkit-fill-available;
-    max-height: 100vh;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-</style>

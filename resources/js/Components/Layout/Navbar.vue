@@ -1,26 +1,19 @@
-<script>
-import {usePage, Link} from '@inertiajs/inertia-vue3';
+<script setup>
+import {usePage} from '@inertiajs/inertia-vue3';
 import {computed} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
-export default {
-    name: "Navbar",
-    components: {Link},
-    setup() {
-        const user = computed(() => usePage().props.value.auth.user);
-        const url = computed(() => usePage().props.value.url);
-        return {user, url};
-    },
-    methods: {
-        handleLogout() {
-            Inertia.post('/logout')
-        },
-        logUrl() {
-            console.log(url);
-        }
-    }
+const user = computed(() => usePage().props.value.auth.user);
+const url = computed(() => usePage().props.value.url);
 
+function handleLogout() {
+    Inertia.post('/logout');
 }
+
+function logUrl() {
+    console.log(url);
+}
+
 </script>
 
 <template>
