@@ -1,36 +1,53 @@
+<script setup>
+import MainLayout from "@/Layouts/MainLayout";
+import NovelCard from "@/Components/Novels/NovelCard";
+import {defineProps, ref} from "vue";
+
+const props = defineProps({
+    novels: Array,
+    auth: {
+        user: Object
+    }
+})
+
+const userName = ref(props.auth.user.name);
+
+const meow = () => {
+    alert("Meow!!!!");
+}
+
+</script>
+
 <template>
     <main-layout>
-        <h3>Welcome, {{ $page.props.auth.user.name }}!</h3>
-        <div v-if="$page.props.novels && $page.props.novels.length > 0">
-            <div v-for="novel in $page.props.novels" class="row justify-content-center">
-                <div class="col-7">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ novel.title ?? 'No title' }}</h5>
-                            <h6>{{ novel.author ?? capitalize($page.props.auth.user.name) }}</h6>
-                            <p class="card-text">{{ novel.description ?? 'No description' }}</p>
-                            <a :href="route('novels.show', {novel: novel.id})" class="btn btn-primary">View Novel</a>
-                        </div>
+        <q-page padding>
+            <div class="text-h4">Welcome, {{ userName }}!</div>
+            <div class="text-h5" v-if="novels && novels.length > 0">Your novels:</div>
+            <div v-if="novels && novels.length > 0">
+                <div v-for="novel in novels" class="row">
+                    <div class="q-py-sm col-12">
+                        <novel-card :novel="novel"/>
                     </div>
                 </div>
             </div>
-        </div>
-        <h4 v-else>No novels! Why not <a href="/novels/new">create one?</a></h4>
+            <div v-else>
+                <div class="row">
+                    <div class="col-12">
+                        No novels yet!
+                    </div>
+                </div>
+            </div>
+            <!-- </div>-->
+        </q-page>
     </main-layout>
 </template>
-
-<script>
-import MainLayout from "@/Layouts/MainLayout";
-import {capitalize} from "lodash";
-
-
-export default {
-    name: "NovelIndex",
-    components: {MainLayout},
-    methods: {}
-}
-</script>
-
 <style scoped>
-
+.novels {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 </style>
+<!--{{ $page.props.auth.user.name }}-->
+<!--{{ $page.props.auth.user.name }}-->
+<!--<div v-if="$page.props.novels && $page.props.novels.length > 0">-->

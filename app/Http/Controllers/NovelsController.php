@@ -25,7 +25,7 @@ class NovelsController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', [Novel::class]);
     }
 
     /**
@@ -47,6 +47,7 @@ class NovelsController extends Controller
      */
     public function show(Novel $novel)
     {
+        $meow = 'Meow';
         $this->authorize('view', [$novel]);
         return Inertia::render('Novels/Show', [
             'novel' => $novel,
@@ -60,9 +61,12 @@ class NovelsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Novel $novel)
     {
-        //
+        $this->authorize('update', $novel);
+        return Inertia::render('Novels/Edit', [
+            'novel' => $novel,
+        ]);
     }
 
     /**

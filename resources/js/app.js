@@ -1,10 +1,8 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import 'bootstrap-icons/font/bootstrap-icons.css'
-
 require('./bootstrap');
 import {createApp, h} from 'vue';
 import {createInertiaApp} from '@inertiajs/inertia-vue3';
 import {InertiaProgress} from '@inertiajs/progress';
+import {Quasar} from 'quasar';
 import {ZiggyVue} from 'ziggy';
 import {Ziggy} from 'ziggy';
 
@@ -15,6 +13,7 @@ createInertiaApp({
     resolve: (name) => require(`./Pages/${name}.vue`),
     setup({el, app, props, plugin}) {
         return createApp({render: () => h(app, props)})
+            .use(Quasar)
             .use(plugin, ZiggyVue, Ziggy)
             .mixin({methods: {route}})
             .mount(el);

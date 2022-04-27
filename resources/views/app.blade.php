@@ -11,6 +11,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet"
+          type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.6.0/dist/quasar.prod.css" rel="stylesheet" type="text/css">
 
     <!-- Scripts -->
     @routes
@@ -20,6 +23,8 @@
 
 @inertia
 
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar@2.6.0/dist/quasar.umd.prod.js"></script>
 @env ('local')
     <script src="http://localhost:8080/js/bundle.js"></script>
 @endenv

@@ -1,16 +1,13 @@
 <template>
-    <navbar/>
-    <div class="container mx-auto pt-3">
-        <slot/>
-    </div>
+    <q-layout view="hhh lpR fFf">
+        <navbar/>
+        <q-page-container>
+            <slot/>
+        </q-page-container>
+
+    </q-layout>
 </template>
 
-<script>
-import Navbar from "@/Components/Navbar";
-
-export default {
-    name: "MainLayout",
-    components: {Navbar},
-
-}
+<script setup>
+import Navbar from "@/Components/Layout/Navbar";
 </script>
