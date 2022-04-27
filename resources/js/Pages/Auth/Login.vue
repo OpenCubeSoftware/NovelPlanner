@@ -1,9 +1,5 @@
 <script setup>
-import BreezeButton from '@/ComponentsAuth/Button.vue';
-import BreezeCheckbox from '@/ComponentsAuth/Checkbox.vue';
 import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/ComponentsAuth/Input.vue';
-import BreezeLabel from '@/ComponentsAuth/Label.vue';
 import Banner from '@/Components/Info/Banner.vue'
 import {isEmpty} from "lodash";
 import BreezeValidationErrors from '@/ComponentsAuth/ValidationErrors.vue';
@@ -59,6 +55,7 @@ const submit = () => {
                             />
                         </template>
                     </q-input>
+                    <div><a href="/forgot-password">Forgot your password?</a></div>
                     <q-checkbox v-model="form.remember" label="Remember me?"/>
                     <div>Don't have an account? <a href="/register">Sign up!</a></div>
                     <q-btn color="primary" label="Log in" :disable="isEmpty(form.email) && isEmpty(form.password)"
