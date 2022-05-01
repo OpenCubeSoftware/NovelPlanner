@@ -26183,11 +26183,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 dense: "",
                 flat: "",
                 round: "",
-                icon: "menu",
+                icon: $setup.leftDrawerOpen ? 'chevron_left' : 'chevron_right',
                 onClick: $setup.toggleLeftDrawer
               }, null, 8
               /* PROPS */
-              , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_q_toolbar_title, null, {
+              , ["icon", "onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_q_toolbar_title, null, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [_hoisted_1];
                 }),

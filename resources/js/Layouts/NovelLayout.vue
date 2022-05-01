@@ -3,7 +3,8 @@
 
         <q-header elevated class="bg-primary text-white">
             <q-toolbar>
-                <q-btn dense flat round icon="menu" @click="toggleLeftDrawer"/>
+                <q-btn dense flat round :icon="leftDrawerOpen ? 'chevron_left' : 'chevron_right'"
+                       @click="toggleLeftDrawer"/>
 
                 <q-toolbar-title>
                     Novel Planner
