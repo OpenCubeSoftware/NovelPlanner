@@ -1,5 +1,5 @@
 <template>
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+    <q-drawer v-model="leftDrawerOpen" side="left" bordered>
         <q-list>
             <q-item>
                 <q-item-section>
@@ -39,11 +39,11 @@
 import {usePage} from '@inertiajs/inertia-vue3';
 import {ref, computed} from "vue";
 
-const meow = () => {
-    alert("meow!");
-}
+const props = defineProps({
+    showSidebar: Boolean
+})
 
-const leftDrawerOpen = ref(true);
+const leftDrawerOpen = ref(props.showSidebar);
 
 const user = computed(() => usePage().props.value.auth.user);
 const novel = computed(() => usePage().props.value?.novel);

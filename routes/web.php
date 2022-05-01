@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [\App\Http\Controllers\NovelsController::class, 'index'])->name('novels.index');
         Route::get('/{novel}', [\App\Http\Controllers\NovelsController::class, 'show'])->name('novels.show');
         Route::get('/{novel}/edit', [\App\Http\Controllers\NovelsController::class, 'edit'])->name('novels.edit');
+        Route::put('/{novel}/edit', [\App\Http\Controllers\NovelsController::class, 'update'])->name('novels.update');
     });
 });
 
