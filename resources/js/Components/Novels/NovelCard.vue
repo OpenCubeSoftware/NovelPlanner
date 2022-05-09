@@ -1,5 +1,4 @@
 <script setup>
-import {capitalize} from "lodash";
 import {defineProps} from 'vue';
 
 const props = defineProps({
@@ -25,7 +24,7 @@ const props = defineProps({
         </q-card-section>
         <q-separator/>
         <q-card-actions vertical>
-            <q-btn flat :href="route('novels.show', {novel: novel.id})">View Novel</q-btn>
+            <q-btn flat @click="$emit('novelSelected', novel.id)">View Novel</q-btn>
         </q-card-actions>
     </q-card>
 </template>

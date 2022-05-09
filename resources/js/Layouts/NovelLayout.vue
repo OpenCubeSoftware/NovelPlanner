@@ -1,3 +1,23 @@
+<script>
+import {ref} from 'vue'
+import {usePage} from "@inertiajs/inertia-vue3";
+
+export default {
+    setup() {
+        const leftDrawerOpen = ref(false)
+        // const user = ref(usePage().props.value.auth.user);
+        const novel = ref(usePage().props.value?.novel);
+        return {
+            leftDrawerOpen,
+            toggleLeftDrawer() {
+                leftDrawerOpen.value = !leftDrawerOpen.value
+            },
+            novel: novel,
+        }
+    }
+}
+</script>
+
 <template>
     <q-layout view="hHh lpR fFf">
 
@@ -7,7 +27,9 @@
                        @click="toggleLeftDrawer"/>
 
                 <q-toolbar-title>
-                    Novel Planner
+                    <a href="/" class="header-link">
+                        Novel Planner
+                    </a>
                 </q-toolbar-title>
             </q-toolbar>
         </q-header>
@@ -54,22 +76,11 @@
     </q-layout>
 </template>
 
-<script>
-import {ref} from 'vue'
-import {usePage} from "@inertiajs/inertia-vue3";
-
-export default {
-    setup() {
-        const leftDrawerOpen = ref(false)
-        // const user = ref(usePage().props.value.auth.user);
-        const novel = ref(usePage().props.value?.novel);
-        return {
-            leftDrawerOpen,
-            toggleLeftDrawer() {
-                leftDrawerOpen.value = !leftDrawerOpen.value
-            },
-            novel: novel,
-        }
-    }
+<style scoped>
+.header-link {
+    color: #ffffff;
+    text-decoration: none;
 }
-</script>
+</style>
+
+

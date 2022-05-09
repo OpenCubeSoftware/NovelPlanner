@@ -13,6 +13,8 @@
             </div>
             <div class="subtitle-1 q-py-xs">by {{ novel.author ?? 'Anonymous' }}</div>
             <div class="text-body1 q-py-xs">
+                <strong>Genre:</strong>
+                <p class="no-bottom-margin">{{ novel.genre }}</p>
                 <strong>Description:</strong>
                 <p>{{ novel.description }}</p>
             </div>
@@ -38,5 +40,9 @@ const props = defineProps({
 
 .icon-button {
     align-self: center;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0;
 }
 </style>

@@ -54,7 +54,7 @@ class NovelPolicy
      */
     public function update(User $user, Novel $novel)
     {
-        return $novel->id === $user->id || $user->is_admin;
+        return $novel->user_id === $user->id || $user->is_admin;
     }
 
     /**

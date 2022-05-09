@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Represents a novel.
  *
- * @property string $title;
+ * @property string $title; //required
  * @property string $subtitle;
  * @property string $author;
  * @property string $description;
@@ -26,8 +26,20 @@ class Novel extends Model
         'subtitle',
         'author',
         'description',
+        'genre',
         'user_id'
     ];
+
+    public static function getRules()
+    {
+        return [
+            'title' => 'required|string',
+            'subtitle' => 'string',
+            'author' => 'required|string',
+            'description' => 'string',
+            'genre' => 'string'
+        ];
+    }
 
     public function user()
     {

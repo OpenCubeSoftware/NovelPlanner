@@ -2,6 +2,7 @@
 import MainLayout from "@/Layouts/MainLayout";
 import NovelCard from "@/Components/Novels/NovelCard";
 import {defineProps, ref} from "vue";
+import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps({
     novels: Array,
@@ -12,8 +13,8 @@ const props = defineProps({
 
 const userName = ref(props.auth.user.name);
 
-const meow = () => {
-    alert("Meow!!!!");
+const viewNovel = (novelId) => {
+    Inertia.visit(route('novels.show', {novel: novelId}));
 }
 
 </script>
@@ -26,7 +27,7 @@ const meow = () => {
             <div v-if="novels && novels.length > 0">
                 <div v-for="novel in novels" class="row">
                     <div class="q-py-sm col-12">
-                        <novel-card :novel="novel"/>
+                        <novel-card :novel="novel" @novel-selected="(id) => viewNovel(id)"/>
                     </div>
                 </div>
             </div>

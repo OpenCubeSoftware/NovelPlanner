@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Novel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request as RequestFacade;
 use Inertia\Inertia;
 
 class NovelsController extends Controller
@@ -26,6 +28,9 @@ class NovelsController extends Controller
     public function create()
     {
         $this->authorize('create', [Novel::class]);
+        $title = RequestFacade::input('title');
+        $novel = Novel::create(['title' => $title, 'user_id' => Auth::user()->id]);
+        return Inertia::location(route('novels.edit', ['novel' => $novel->id]));
     }
 
     /**
@@ -47,7 +52,6 @@ class NovelsController extends Controller
      */
     public function show(Novel $novel)
     {
-        $meow = 'Meow';
         $this->authorize('view', [$novel]);
         return Inertia::render('Novels/Show', [
             'novel' => $novel,
@@ -59,7 +63,7 @@ class NovelsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit(Novel $novel)
     {
@@ -74,11 +78,17 @@ class NovelsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Novel $novel)
     {
-        //
+        $this->authorize('update', $novel);
+        $rules = Novel::getRules();
+        $validated = $request->validate($rules);
+        $novel->fill($validated);
+        $novel->save();
+
+        return redirect()->route('novels.show', ['novel' => $novel->id]);
     }
 
     /**

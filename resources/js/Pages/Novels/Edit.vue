@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-11"></div>
                 <div class="col-1 submit-button">
-                    <q-btn color="primary" label="Save"/>
+                    <q-btn color="primary" @click="submit" label="Save"/>
                 </div>
             </div>
         </q-page>
@@ -36,24 +36,22 @@
 
 <script setup>
 import NovelLayout from "@/Layouts/NovelLayout";
-import {useForm} from "@inertiajs/inertia-vue3";
+import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps({
     novel: Object
 })
 
-const form = useForm({
+const form = {
     title: props.novel.title ?? '',
     subtitle: props.novel.subtitle ?? '',
     author: props.novel.author ?? '',
     description: props.novel.description ?? '',
     genre: props.novel.genre ?? '',
-})
+}
 
 const submit = () => {
-    form.put(route('novels.update', {novel: novel.id}),
-        {}
-    )
+    Inertia.put(route('novels.update', {novel: props.novel.id}), form);
 }
 
 </script>

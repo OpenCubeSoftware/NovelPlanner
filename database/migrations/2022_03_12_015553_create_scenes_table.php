@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,10 +17,12 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->foreignId('chapter_id');
+            $table->string('pov')->nullable();
+            $table->foreignId('character_id')->nullable()->constrained();
             $table->enum('status', ['first_draft', 'second_draft', 'final_review', 'done'])->default('first_draft');
             $table->enum('type', ['action', 'reaction'])->default('action');
             $table->enum('plot_level', ['plot', 'subplot'])->default('plot');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('notes')->nullable();
             $table->string('goal')->nullable();
             $table->string('outcome')->nullable();

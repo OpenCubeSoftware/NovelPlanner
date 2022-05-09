@@ -26,6 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::group(['prefix' => '/novels'], function () {
         Route::get('/', [\App\Http\Controllers\NovelsController::class, 'index'])->name('novels.index');
+        Route::post('/new', [\App\Http\Controllers\NovelsController::class, 'create'])->name('novels.create');
         Route::get('/{novel}', [\App\Http\Controllers\NovelsController::class, 'show'])->name('novels.show');
         Route::get('/{novel}/edit', [\App\Http\Controllers\NovelsController::class, 'edit'])->name('novels.edit');
         Route::put('/{novel}/edit', [\App\Http\Controllers\NovelsController::class, 'update'])->name('novels.update');
